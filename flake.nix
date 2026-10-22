@@ -70,9 +70,10 @@
               # my modules
               ./modules/system
 
-              # home manager
               inputs.home-manager.nixosModules.home-manager
               {
+                home-manager.backupFileExtension = "backup";
+
                 home-manager.extraSpecialArgs = {
                   inherit pkgs;
                   inherit pkgs-stable;
@@ -97,9 +98,11 @@
     nixpkgs-stable.url = "nixpkgs/nixos-25.11";
     chaotic.url = "github:chaotic-cx/nyx";
 
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  
     hyprland = {
       url = "github:hyprwm/Hyprland/v0.52.2?submodules=true";
       inputs.nixpkgs.follows = "nixpkgs";

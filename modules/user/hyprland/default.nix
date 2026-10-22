@@ -99,7 +99,7 @@ in
       plugins = [ ];
       settings = {
         env = [
-          "AQ_DRM_DEVICES,${config.home.sessionVariables.AQ_DRM_DEVICES}"
+          "AQ_DRM_DEVICES,${config.home.sessionVariables.AQ_DRM_DEVICES or "/dev/dri/card1"}"
           "AW_NO_MODIFIERS,1"
         ];
         exec-once = [

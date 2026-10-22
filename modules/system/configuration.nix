@@ -11,7 +11,7 @@
     services.journald.rateLimitInterval = "30s";
 
     # Locale and TZ
-    time.timeZone = "America/Chicago";
+    time.timeZone = "Asia/Tashkent";
     services.timesyncd.enable = true;
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
@@ -59,10 +59,23 @@
 
     # Bootloader
     # Use systemd-boot if uefi, default to grub otherwise
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.systemd-boot.editor = false;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.efi.efiSysMountPoint = "/boot";
+    boot.loader.systemd-boot = {
+      enable = true;
+      editor = false;
+
+      extraEntries = {
+        "kali.conf" = ''
+          title Kali Linux
+          efi /EFI/kali/grubx64.efi
+          sort-key o_kali
+        '';
+      };
+    };
+
+    boot.loader.efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
 
     # Silent Boot
     # https://wiki.archlinux.org/title/Silent_boot
@@ -73,7 +86,17 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+      "resume_offset=533760"
     ];
+
+    swapDevices = [
+      {
+        device = "/swap/swapfile";
+      }
+    ];
+
+    boot.resumeDevice = "/dev/nvme0n1p7";
+
     boot.initrd.systemd.enable = true;
     boot.initrd.verbose = false;
     boot.plymouth.enable = true;

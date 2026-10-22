@@ -60,7 +60,7 @@ in
         icon = "qutebrowser";
       })
     ];
-    xdg.mimeApps.defaultApplications = lib.optionals qutebrowserDefault (lib.mkForce {
+    xdg.mimeApps.defaultApplications = lib.mkIf qutebrowserDefault (lib.mkForce {
       "text/html" = "qutebrowser-hyprprofile.desktop";
       "x-scheme-handler/http" = "qutebrowser-hyprprofile.desktop";
       "x-scheme-handler/https" = "qutebrowser-hyprprofile.desktop";

@@ -38,8 +38,8 @@ in {
         START_CHARGE_THRESH_BAT0 = 75;
         STOP_CHARGE_THRESH_BAT0 = 80;
 
-        MEM_SLEEP_ON_AC = "deep";
-        MEM_SLEEP_ON_BAT = "deep";
+        #MEM_SLEEP_ON_AC = "deep";
+        #MEM_SLEEP_ON_BAT = "deep";
 
         PLATFORM_PROFILE_ON_AC = "quiet";
         PLATFORM_PROFILE_ON_BAT = "quiet";

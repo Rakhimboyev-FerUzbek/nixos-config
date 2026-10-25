@@ -45,7 +45,7 @@
           chown -R 0:0 ${config.systemSettings.dotfilesDir};
           chown -R 0:0 ${config.systemSettings.secretsFlakeDir};
           pushd ${config.systemSettings.dotfilesDir} &> /dev/null;
-          systemd-inhibit --what sleep:idle:handle-lid-switch nixos-rebuild switch;
+          systemd-inhibit --what sleep:idle:handle-lid-switch nixos-rebuild switch --flake ${config.systemSettings.dotfilesDir}#$(hostname);
           popd &> /dev/null;
           exit 0;
         elif [ "$1" = "update" ]; then
@@ -139,7 +139,7 @@
       ];
       script = ''
                 set -euo pipefail
-        	export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos:nixos-config=/etc/nixos/configuration.nix"
+        	      export NIX_PATH="nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos:nixos-config=/etc/nixos/configuration.nix"
                 echo "navigating to /etc/nixos";
                 cd ${config.systemSettings.dotfilesDir};
                 echo "running git pull";

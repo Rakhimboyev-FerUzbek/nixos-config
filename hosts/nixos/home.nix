@@ -24,10 +24,10 @@
       keepass.enable = false;
       media.enable = true;
       music.enable = false;
-      office.enable = true;
+      office.enable = false;
       recording.enable = false;
       virtualization = {
-        virtualMachines.enable = false;
+        virtualMachines.enable = true;
       };
       ai.enable = false;
 

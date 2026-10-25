@@ -10,16 +10,16 @@
       # hardware
       cachy.enable = true;
       bluetooth.enable = true;
-      powerprofiles.enable = true;
-      tlp.enable = false;
-      printing.enable = true;
+      powerprofiles.enable = false;
+      tlp.enable = true;
+      printing.enable = false;
 
       # software
       flatpak.enable = false;
       gaming.enable = false;
       virtualization = {
         docker.enable = false;
-        virtualMachines.enable = false;
+        virtualMachines.enable = true;
       };
       brave.enable = true;
 
